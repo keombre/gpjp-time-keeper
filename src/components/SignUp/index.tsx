@@ -1,5 +1,5 @@
 import React from 'react';
-import { SignUpForm } from './SignUpForm';
+import { SignUpForm, SignUpLink } from './SignUpForm';
 
 const SignUpPage = () => (
     <div>
@@ -9,3 +9,5 @@ const SignUpPage = () => (
 );
 
 export default SignUpPage;
+
+export {SignUpLink};

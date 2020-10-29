@@ -11,6 +11,7 @@ import { IconNames } from "@blueprintjs/icons";
 import * as ROUTES from '../../constants/routes';
 import { LinkButton } from '../Helpers';
 import { Link } from 'react-router-dom';
+import SignOut from '../SignOut';
 
 const Navigation = () => (
   <Navbar>
@@ -22,6 +23,8 @@ const Navigation = () => (
         <LinkButton to={ROUTES.ADMIN} icon={IconNames.KEY} className={Classes.MINIMAL}>Admin</LinkButton>
         <LinkButton to={ROUTES.ACCOUNT} icon={IconNames.USER} className={Classes.MINIMAL}>Account</LinkButton>
         <LinkButton to={ROUTES.SIGN_UP} icon={IconNames.USER} className={Classes.MINIMAL}>SignUp</LinkButton>
+        <LinkButton to={ROUTES.SIGN_IN} icon={IconNames.USER} className={Classes.MINIMAL}>SignIn</LinkButton>
+        <SignOut />
     </Navbar.Group>
   </Navbar>
 );
