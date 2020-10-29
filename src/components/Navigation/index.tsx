@@ -21,6 +21,7 @@ const Navigation = () => (
 
         <LinkButton to={ROUTES.ADMIN} icon={IconNames.KEY} className={Classes.MINIMAL}>Admin</LinkButton>
         <LinkButton to={ROUTES.ACCOUNT} icon={IconNames.USER} className={Classes.MINIMAL}>Account</LinkButton>
+        <LinkButton to={ROUTES.SIGN_UP} icon={IconNames.USER} className={Classes.MINIMAL}>SignUp</LinkButton>
     </Navbar.Group>
   </Navbar>
 );
