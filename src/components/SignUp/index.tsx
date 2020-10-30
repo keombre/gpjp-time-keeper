@@ -1,11 +1,15 @@
+import { Card, Elevation, H3 } from '@blueprintjs/core';
 import React from 'react';
+import { SidePanel } from '../Layout';
 import { SignUpForm, SignUpLink } from './SignUpForm';
 
 const SignUpPage = () => (
-    <div>
-        <h1>SignUp</h1>
-        <SignUpForm />
-    </div>
+    <SidePanel>
+        <Card elevation={Elevation.TWO}>
+            <H3 style={{marginBottom: "25px"}}>Sign-Up</H3>
+            <SignUpForm />
+        </Card>
+    </SidePanel>
 );
 
 export default SignUpPage;

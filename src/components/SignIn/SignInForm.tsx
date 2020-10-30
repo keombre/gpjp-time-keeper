@@ -4,6 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { FirebaseProps } from '../Firebase/context';
+import { Button, FormGroup, InputGroup } from '@blueprintjs/core';
 
 interface SignInFormState {
     email: string,
@@ -13,7 +14,7 @@ interface SignInFormState {
 
 class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, SignInFormState> {
 
-    readonly InitialState : SignInFormState = {
+    readonly InitialState: SignInFormState = {
         email: '',
         password: '',
         error: null
@@ -29,14 +30,14 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
         const { email, password } = this.state;
 
         this.props.firebase
-        .doSignInWithEmailAndPassword(email, password)
-        .then(() => {
-            this.setState({ ...this.InitialState });
-            this.props.history.push(ROUTES.HOME);
-        })
-        .catch(error => {
-            this.setState({ error });
-        });
+            .doSignInWithEmailAndPassword(email, password)
+            .then(() => {
+                this.setState({ ...this.InitialState });
+                this.props.history.push(ROUTES.HOME);
+            })
+            .catch(error => {
+                this.setState({ error });
+            });
 
         event.preventDefault();
     };
@@ -44,13 +45,13 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
     onChange = (event: ChangeEvent<HTMLInputElement>) => {
         switch (event.target.name) {
             case "email":
-                this.setState({"email": event.target.value })
+                this.setState({ "email": event.target.value })
                 break
             case "password":
-                this.setState({"password": event.target.value })
+                this.setState({ "password": event.target.value })
                 break
             case "error":
-                this.setState({"error": event.target.value })
+                this.setState({ "error": event.target.value })
                 break
         }
     };
@@ -61,27 +62,31 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
         const isInvalid = password === '' || email === '';
 
         return (
-        <form onSubmit={this.onSubmit}>
-            <input
-                name="email"
-                value={email}
-                onChange={this.onChange}
-                type="text"
-                placeholder="Email Address"
-            />
-            <input
-                name="password"
-                value={password}
-                onChange={this.onChange}
-                type="password"
-                placeholder="Password"
-            />
-            <button disabled={isInvalid} type="submit">
-                Sign In
-            </button>
+            <form onSubmit={this.onSubmit}>
+                <FormGroup>
+                    <InputGroup
+                        name="email"
+                        value={email}
+                        onChange={this.onChange}
+                        type="text"
+                        placeholder="Email Address"
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <InputGroup
+                        name="password"
+                        value={password}
+                        onChange={this.onChange}
+                        type="password"
+                        placeholder="Password"
+                    />
+                </FormGroup>
+                <Button disabled={isInvalid} type="submit">
+                    Sign In
+                </Button>
 
-            {error && <p>{error.message}</p>}
-        </form>
+                {error && <p>{error.message}</p>}
+            </form>
         );
     }
 }
