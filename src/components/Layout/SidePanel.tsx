@@ -5,7 +5,7 @@ type Props = {
 }
 
 const SidePanel = (props: Props) => (
-    <div className="sidePanel">
+    <div>
         {props.children}
     </div>
 )

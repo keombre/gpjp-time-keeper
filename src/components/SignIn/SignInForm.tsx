@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { FirebaseProps } from '../Firebase/context';
-import { Button, FormGroup, InputGroup } from '@blueprintjs/core';
+import { Form } from 'semantic-ui-react';
 
 interface SignInFormState {
     email: string,
@@ -62,31 +62,14 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
         const isInvalid = password === '' || email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <FormGroup>
-                    <InputGroup
-                        name="email"
-                        value={email}
-                        onChange={this.onChange}
-                        type="text"
-                        placeholder="Email Address"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <InputGroup
-                        name="password"
-                        value={password}
-                        onChange={this.onChange}
-                        type="password"
-                        placeholder="Password"
-                    />
-                </FormGroup>
-                <Button disabled={isInvalid} type="submit">
-                    Sign In
-                </Button>
+            <Form onSubmit={this.onSubmit}>
+                <Form.Input label="Email" type="email" onChange={this.onChange} name="email" value={email} />
+                <Form.Input label="Password" type="password" onChange={this.onChange} name="password" value={password} />
+
+                <Form.Button disabled={isInvalid}>Sign In</Form.Button>
 
                 {error && <p>{error.message}</p>}
-            </form>
+            </Form>
         );
     }
 }

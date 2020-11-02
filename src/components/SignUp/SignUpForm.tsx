@@ -1,7 +1,6 @@
-import { Button, FormGroup, InputGroup } from '@blueprintjs/core';
-import { IconNames } from "@blueprintjs/icons";
 import React, { ChangeEvent, Component, FormEvent } from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { Form } from 'semantic-ui-react';
 
 import * as ROUTES from '../../constants/routes';
 import { FirebaseProps, withFirebase } from '../Firebase/context';
@@ -82,51 +81,16 @@ class SignUpFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
             username === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <FormGroup>
-                    <InputGroup
-                        name="username"
-                        value={username}
-                        onChange={this.onChange}
-                        type="text"
-                        leftIcon={IconNames.USER}
-                        placeholder="Full Name"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <InputGroup
-                        name="email"
-                        value={email}
-                        onChange={this.onChange}
-                        type="email"
-                        leftIcon={IconNames.ENVELOPE}
-                        placeholder="Email Address"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <InputGroup
-                        name="passwordOne"
-                        value={passwordOne}
-                        onChange={this.onChange}
-                        type="password"
-                        leftIcon={IconNames.KEY}
-                        placeholder="Password"
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <InputGroup
-                        name="passwordTwo"
-                        value={passwordTwo}
-                        onChange={this.onChange}
-                        type="password"
-                        leftIcon={IconNames.KEY}
-                        placeholder="Confirm Password"
-                    />
-                </FormGroup>
-                <Button disabled={isInvalid} type="submit">Sign Up</Button>
+            <Form onSubmit={this.onSubmit}>
+                <Form.Input label="Username" type="text" onChange={this.onChange} name="username" value={username} />
+                <Form.Input label="Email" type="email" onChange={this.onChange} name="email" value={email} />
+                <Form.Input label="Password" type="password" onChange={this.onChange} name="passwordOne" value={passwordOne} />
+                <Form.Input label="Password again" type="password" onChange={this.onChange} name="passwordTwo" value={passwordTwo} />
+
+                <Form.Button disabled={isInvalid}>Submit</Form.Button>
 
                 {error && <p>{error.message}</p>}
-            </form>
+            </Form>
         );
     }
 }

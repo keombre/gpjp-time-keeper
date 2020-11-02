@@ -1,32 +1,38 @@
 import React from 'react';
 
-import {
-  Alignment,
-  Classes,
-  Navbar
-} from "@blueprintjs/core";
-
-import { IconNames } from "@blueprintjs/icons";
-
 import * as ROUTES from '../../constants/routes';
-import { LinkButton } from '../Helpers';
 import { Link } from 'react-router-dom';
 import SignOut from '../SignOut';
 
-const Navigation = () => (
-  <Navbar>
-    <Navbar.Group align={Alignment.LEFT}>
-        <Navbar.Heading><Link to={ROUTES.LANDING}>GPJP Time Tracker</Link></Navbar.Heading>
-        <Navbar.Divider />
-        <LinkButton to={ROUTES.HOME} icon={IconNames.HOME} className={Classes.MINIMAL}>Home</LinkButton>
+import {
+  Container,
+  Dropdown,
+  Menu,
+} from 'semantic-ui-react'
 
-        <LinkButton to={ROUTES.ADMIN} icon={IconNames.KEY} className={Classes.MINIMAL}>Admin</LinkButton>
-        <LinkButton to={ROUTES.ACCOUNT} icon={IconNames.USER} className={Classes.MINIMAL}>Account</LinkButton>
-        <LinkButton to={ROUTES.SIGN_UP} icon={IconNames.USER} className={Classes.MINIMAL}>SignUp</LinkButton>
-        <LinkButton to={ROUTES.SIGN_IN} icon={IconNames.USER} className={Classes.MINIMAL}>SignIn</LinkButton>
-        <SignOut />
-    </Navbar.Group>
-  </Navbar>
+const Navigation = () => (
+  <Menu fixed='top' inverted>
+      <Container>
+        <Menu.Item as={Link} to={ROUTES.LANDING} header>
+          GPJP Timer Keeper
+        </Menu.Item>
+        <Menu.Item as={Link} to={ROUTES.HOME}>Home</Menu.Item>
+
+        <Menu.Menu position='right'>
+          <Menu.Item as={Link} to={ROUTES.SIGN_UP}>Sign Up</Menu.Item>
+          <Menu.Item as={Link} to={ROUTES.SIGN_IN}>Sign In</Menu.Item>
+          <Dropdown item simple text='User'>
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to={ROUTES.ACCOUNT}>Account</Dropdown.Item>
+              <Dropdown.Item as={Link} to={ROUTES.ADMIN}>Admin</Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item as={SignOut}>Sign out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </Menu.Menu>
+
+      </Container>
+    </Menu>
 );
 
 export default Navigation;
