@@ -26,7 +26,7 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
         this.state = { ...this.InitialState }
     }
 
-    onSubmit(event: FormEvent<HTMLFormElement>) {
+    onSubmit = (event: FormEvent<HTMLFormElement>) => {
         const { email, password } = this.state
 
         this.props.firebase
@@ -42,7 +42,7 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
         event.preventDefault()
     }
 
-    onChange(event: ChangeEvent<HTMLInputElement>) {
+    onChange = (event: ChangeEvent<HTMLInputElement>) => {
         switch (event.target.name) {
             case "email":
                 this.setState({ "email": event.target.value })
