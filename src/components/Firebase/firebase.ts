@@ -1,5 +1,5 @@
 import app from 'firebase/app'
-import 'firebase/auth'
+import 'firebase'
 
 const config = {
     "apiKey": "AIzaSyDZXTgLQghD_2Ma06YDN6XloO0R0wfaHKQ",
@@ -36,3 +36,4 @@ class Firebase {
 }
 
 export default Firebase
+export type FirebaseUser = app.User | null

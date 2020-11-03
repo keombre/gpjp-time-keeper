@@ -10,29 +10,27 @@ import SignUpPage from "../SignUp";
 import * as ROUTES from '../../constants/routes';
 import SignInPage from "../SignIn";
 import { Container } from "semantic-ui-react";
+import { withAuthentication } from "../Session";
 
 
-class App extends React.Component {
+const App = () => (
+    <Router>
+        _
+        <Navigation />
 
-    render = () => {
-        return (
-            <Router>
-                _
-                <Navigation />
+        <Container text style={{ marginTop: '5em' }}>
+            <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            <Route path={ROUTES.HOME} component={HomePage} />
+            <Route path={ROUTES.ADMIN} component={AdminPage} />
+            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+        </Container>
 
-                <Container text style={{ marginTop: '5em' }}>
-                    <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                    <Route path={ROUTES.HOME} component={HomePage} />
-                    <Route path={ROUTES.ADMIN} component={AdminPage} />
-                    <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-                    <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-                    <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-                </Container>
+        {/*<Footer />*/}
+    </Router>
+)
 
-                {/*<Footer />*/}
-            </Router>
-        )
-    }
-}
 
-export default App
+export default withAuthentication(App)
+
