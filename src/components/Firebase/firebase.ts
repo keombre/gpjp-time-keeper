@@ -1,5 +1,5 @@
 import app from 'firebase/app'
-import 'firebase'
+import 'firebase/auth'
 
 const config = {
     "apiKey": "AIzaSyDZXTgLQghD_2Ma06YDN6XloO0R0wfaHKQ",
@@ -35,5 +35,7 @@ class Firebase {
         this.auth.currentUser?.updatePassword(password);
 }
 
+type FirebaseUser = app.User | null
+
 export default Firebase
-export type FirebaseUser = app.User | null
+export type { FirebaseUser }

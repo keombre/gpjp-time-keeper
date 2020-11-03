@@ -1,10 +1,10 @@
-import React, { ChangeEvent, Component, FormEvent } from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import React, { ChangeEvent, Component, FormEvent } from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
-import { FirebaseProps } from '../Firebase/context';
-import { Form } from 'semantic-ui-react';
+import { withFirebase } from '../Firebase'
+import * as ROUTES from '../../constants/routes'
+import { FirebaseProps } from '../Firebase/context'
+import { Form } from 'semantic-ui-react'
 
 interface SignInFormState {
     email: string,
@@ -21,28 +21,28 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
     }
 
     constructor(props: FirebaseProps & RouteComponentProps) {
-        super(props);
+        super(props)
 
-        this.state = { ...this.InitialState };
+        this.state = { ...this.InitialState }
     }
 
-    onSubmit = (event: FormEvent<HTMLFormElement>) => {
-        const { email, password } = this.state;
+    onSubmit(event: FormEvent<HTMLFormElement>) {
+        const { email, password } = this.state
 
         this.props.firebase
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
-                this.setState({ ...this.InitialState });
-                this.props.history.push(ROUTES.HOME);
+                this.setState({ ...this.InitialState })
+                this.props.history.push(ROUTES.HOME)
             })
             .catch(error => {
-                this.setState({ error });
-            });
+                this.setState({ error })
+            })
 
-        event.preventDefault();
-    };
+        event.preventDefault()
+    }
 
-    onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event: ChangeEvent<HTMLInputElement>) {
         switch (event.target.name) {
             case "email":
                 this.setState({ "email": event.target.value })
@@ -54,12 +54,12 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
                 this.setState({ "error": event.target.value })
                 break
         }
-    };
+    }
 
     render() {
-        const { email, password, error } = this.state;
+        const { email, password, error } = this.state
 
-        const isInvalid = password === '' || email === '';
+        const isInvalid = password === '' || email === ''
 
         return (
             <Form onSubmit={this.onSubmit}>
@@ -70,10 +70,10 @@ class SignInFormBase extends Component<FirebaseProps & RouteComponentProps, Sign
 
                 {error && <p>{error.message}</p>}
             </Form>
-        );
+        )
     }
 }
 
-const SignInForm = withRouter(withFirebase(SignInFormBase));
+const SignInForm = withRouter(withFirebase(SignInFormBase))
 
-export { SignInForm };
+export { SignInForm }
